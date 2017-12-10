@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hola Ride</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/stylish-portfolio.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+	<style>
+	.logoHeader {font-family: 'Poiret One', cursive; font-weight: 400; color:#fff; }
+	.logoSubHeader {font-family: 'Poiret One', cursive; font-weight: 200;color:#fff; }
+	.logocaption {font-family: 'Poiret One', cursive; font-weight: 200;color:#fff; padding:10px;}
+	</style>
+	
+</head>
+
+<body>
+
+
+    <!-- Header -->
+    <header id="top" class="header">
+        <div class="text-vertical-center" style="vertical-align:inherit; padding-top:15%">
+		  <h1 class="logoHeader">Hola</h1>
+			<h2 class="logoSubHeader" style="margin:0px">Ride</h2>
+		<div id="welcomeBanner">
+		    
+          
+			<div id="myCarousel" class="carousel slide  running-slider" data-ride="carousel" style="height:280px">
+    <!-- Indicators -->
+   
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+              
+			<h3 class="logoSubHeader" style="margin:0px">Planning for Party ?</h3>
+            <h4 class="logocaption">Create Your own HOLA room and track your friends location in LIVE <br><br><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></h4>
+      </div>
+
+      <div class="item">
+               
+			<h2 class="logoSubHeader" style="margin:0px">Worried about Kids ?</h1>
+            <h4 class="logocaption">Create Your own HOLA room and track your Kids school vechicle location in LIVE<br><br><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></h4>
+      </div>
+    
+      <div class="item">
+             
+			<h3 class="logoSubHeader" style="margin:0px">Wanna help saving your colleagues fuel cost ?</h3>
+            <h4 class="logocaption">Create Your own HOLA room and pick them on the way ! <br><br><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></h4>
+      </div>
+	<div class="item">
+             
+			<h3 class="logoSubHeader" style="margin:0px">Missing train in last minutes ?</h3>
+            <h4 class="logocaption">Create Your own HOLA room and track the train current position <br><br><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></h4>
+      </div>
+	  <div class="item">
+             
+			<h3 class="logoSubHeader" style="margin:0px">Today again missed office Cab ?</h3>
+            <h4 class="logocaption">Create Your own HOLA room and track your office vehicle location <br><br><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></h4>
+      </div>
+    
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" style="display:none" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" style="display:none" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+	
+	 <ol class="carousel-indicators" style="bottom:-20px;">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+	   <li data-target="#myCarousel" data-slide-to="4"></li>
+    </ol>
+  </div>
+            <br>
+			</div>
+			<div id="loginContainer" style="padding-top:20px">
+			<div class="row" style="margin:0; padding:0">
+			
+			
+			<a href="signin.html" id="signIn" class="btn btn-dark btn-lg" style="color:#fff;">Sign In</a>
+			<a href="signUp.html" class="btn btn-dark btn-lg" id="signUp" style="margin-left:10px;color:#fff;">Sign Up</a>
+			</div>
+			</div>
+			<style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+  </style>
+			
+        </div>
+    </header>
+
+
+   
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+<script src="js/jquery.mobile.custom.min.js"></script>  
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+<script>  
+$(document).ready(function() {  
+   $("#myCarousel").swiperight(function() {  
+      $("#myCarousel").carousel('prev');  
+    });  
+   $("#myCarousel").swipeleft(function() {  
+      $("#myCarousel").carousel('next');  
+   });  
+});  
+</script>  
+   <script type="text/javascript" src="socket.io.js"></script>
+
+	<script type="text/javascript" src="cordova.js"></script>
+	 <script type="text/javascript" src="js/location-Enable.js"></script>
+	 -->
+<script>
+	
+	$(document).ready(function(){
+	
+	if(localStorage['LoggedInUserID'])
+	   {
+	   //document.getElementById('welcomeBanner').style.display = 'block';
+	  // document.getElementById('loginContainer').style.display = 'none';
+			
+	//setTimeout(redirect, 20000);
+			
+	   }
+	   else
+	   {
+	   
+	  // 	   document.getElementById('welcomeBanner').style.display = 'none';
+		//	document.getElementById('loginContainer').style.display = 'block';
+			
+	   }
+	   
+	   function redirect()
+	   {
+			window.location.href="signUp.html?status=loginsuccess&userName="+localStorage.getItem('LoggedInUserID');
+	   }
+	
+	});
+	   
+	</script>
+	<script>
+	
+	
+	$("#signUp").click(function(){window.location.href="SignUp.html";});
+	
+	</script>
+	
+
+	
+</body>
+
+</html>

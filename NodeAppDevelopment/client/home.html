@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+	<meta http-equiv="Content-Security-Policy"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Hola Ride</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/Hola.Master.Styles.css" rel="stylesheet">
+	<link href="css/Hola.Main.Styles.css" rel="stylesheet">
+	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+	<style>
+	  .btngroup-padding{ padding-top:10px !important;}
+	</style>
+</head>
+
+<body>
+ 
+
+<!-- Navigation -->
+    <div id="menu-toggle" class="btn btn-dark btn-lg toggle" style="width:100%; margin:0; ">
+	
+	<div class="col-lg-2 col-md-3 col-sm-2 col-xs-2 chatMenu"   style="padding-right:0px;"><i class="glyphicon glyphicon-comment"></i></div>
+	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 welcomeHeader" style="padding-right:0px;"></div>
+	<div class="col-lg-2 col-md-3 col-sm-2 col-xs-2" id="leftMenu" style="padding-right:0px;"><i class="fa fa-bars"></i></div>
+	</div>
+    <nav id="sidebar-wrapper">
+        <ul id="menuList" class="sidebar-nav">
+            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+            <li class="sidebar-brand">
+                <a href="#top" id="lblUserName"  onclick = $("#menu-close").click(); >Welcome</a>
+            </li>
+            <li>
+                <a href="#top" onclick = $("#menu-close").click(); ><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Home</a>
+            </li>
+            <li>
+                <a href="#"  id="profileNav" ><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a>
+            </li>
+            
+            <li>
+                <a href="#contact" id="menuLogOut" >Logout</a>
+            </li>
+			
+        </ul>
+		<ul id="chatMenuList"  style="padding:0px !important;">
+		<a id="chat-menu-close" href="#" class="btn btn-lg pull-left"><i class="glyphicon glyphicon-menu-left" style="color:#fff"></i></a>
+            <li class="sidebar-brand">
+                <a href="#top"  style="line-height:40px; color:#fff; text-decoration:none; display:inline; text-align:center; font-size:20px;"   onclick = $("#chat-menu-close").click(); ><span class="logoHeader" style="color:#fff">Hola</span> Ride  </a>
+				
+				
+            </li>
+			<li>
+		<div id="chatWindow" style="" class="chat-app">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="color:#000; font-size:19px; background-color:#fff; padding:5px; ">
+		<img src="img/group-chat-icon.png" class="img-circle"  width="42px" height="42px">
+		<span style="padding-left:5px" class="welcomeHeaderChat"></span>
+		</div>
+		<div class="chat-messages"></div>
+		<textarea id="chatBox" placeholder="Type Your Message"></textarea><span id="chatBottom"></span></div>
+		</li>
+		</ul>
+    </nav>
+    <!-- Header -->
+    <header id="top" class="headerNoBgImg">
+      <section id="wrapper">
+	  <div class="row" style="margin:0px; padding:0px">
+	  <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12"><br></div>
+	  </div>
+	  <div class="row" style="margin:0px; padding:0px">
+	  <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12"></div>
+	  
+	 
+	  </div>
+	  <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12"><br></div>
+	  </section>
+   <section id="contact" class="map" style="margin-top:25px">
+   	   <div class="row-fluid">
+	   <div class="col-lg-12" id="headerBar" style="margin:0; padding:10px 0px 10px 10px; font-size:1.0em; background-color:#000; color:#fff; opacity:0.9">
+	  There are <span id="user-number" class="label label-info" style=background-color:rgba(0,0,0,0.7); padding:.2em .6em .2em" onclick="move_to_otheruser()">0</span>
+	members driving / tracking around you
+	 
+	</div></div>
+       <div id="map-canvas"><div class="loading-map-bg-img" style=" text-align:center; vertical-align:middle;padding-top:30%"><div style="background-color:#fff;padding:15px; ">Fetching Your Location <br>
+		<img src="img/loading-icon.gif"></div>
+		</div></div>
+		<div id="HolalistView" style="display:none">
+		
+		</div>
+    </section>
+
+
+<div class="header-content" style=" width:100%; vertical-align:middle;display: table-cell; text-align:center;">
+<div class="row" style="margin:0px; padding:0px">
+<div class="col-lg-6 col-sm-6 col-md-6 col-xs-6" id="btn-listView" class="btnViews" style="border-right:2px solid #fff;"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> List View</div>
+<div class="col-lg-6 col-sm-6 col-md-6 col-xs-6" id="btn-mapView" class="btnViews" ><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Map View</div>
+</div>
+</div>
+
+
+    </header>
+	<script type="text/javascript" src="socket.io.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/Hola/global.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/Hola/chat.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC90Fg9T7re9P4syoWzSEpmvBTjx9trdIk"></script>      
+    <script type="text/javascript" src="js/Hola/location-sharing.js"></script>
+    	
+	<script type="text/javascript">
+            
+	
+			
+            // User Infomation
+            var currentUserInfo = null;
+            var users = {};
+            // Google Maps UI
+            var map = null;
+            var infowindow = null;
+            var refreshTimeout = null;
+			var userId=localStorage.getItem('LoggedInUserID');
+	        $('#lblUserName').html(localStorage.getItem('LoggedInUserName'));
+			
+	function getParameterByName(name){
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( location.search );
+  return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+            function userLocationUpdate(userInfo){
+                if(!users[userInfo.id]) users[userInfo.id] = { id: userInfo.id };
+                
+                users[userInfo.id].name = userInfo.name;
+                users[userInfo.id].latitude  = userInfo.latitude;
+                users[userInfo.id].longitude = userInfo.longitude;
+				users[userInfo.id].holaUsrName = userInfo.holaUsrName;
+				users[userInfo.id].holaUsrMobileNo = userInfo.holaUsrMobileNo;
+				users[userInfo.id].holaUsrStatus = userInfo.holaUsrStatus
+				users[userInfo.id].holaRole = userInfo.holaRole;
+                users[userInfo.id].timestamp = new Date().getTime()
+                refreshMarkers();
+            } 
+            function refreshMarkers(){
+                if (!map) return;
+                if (!currentUserInfo.movedMapCenter && currentUserInfo.timestamp) {
+				
+				    $('#user-name').val(userId);
+					$('user-name').bind('keyup', function(){
+					   currentUserInfo.name=$('user-name').val();
+					})
+                    currentUserInfo.movedMapCenter = true;
+                    map.setCenter(new google.maps.LatLng(
+                        currentUserInfo.latitude, currentUserInfo.longitude));
+                }
+				var tblView='<div class="list-group" style="padding-top:15px">';
+                for (var id in users) {
+                    var userInfo = users[id];
+					var myInfo= users[localStorage.getItem('LoggedInUserID')];
+                    if(userInfo.marker){
+    
+                        // If we havn't received any update from the user
+                        //  We remove the marker of missing user
+                        if( userInfo.id != currentUserInfo.id && 
+                            userInfo.timestamp + 1000*30 < new Date().getTime() ){
+                            userInfo.marker.setMap(null);
+                            delete users[id];
+                            continue;
+                        }
+                    }else{
+                        // Create a marker for the new user
+					//	tblView +='<a href="#" class="list-group-item" style="border:0">';
+						tblView +='<div class="media" style="background-color:#fff; border-bottom:1px solid #000">';
+						tblView +='<a class="pull-left" href="#"><img class="media-object" src="img/default_user.png" style="width:42px; height:42px" alt="media-object">';
+						tblView +='	</a><div class="media-body"><h4 class="media-heading" style="font-weight:bold">'+userInfo.holaUsrName + '</h4>';
+						var reqIcon;
+						var buttonTxt; var descContent;
+						 var chatTriggerlistView='openChatWindow("'+userInfo.id+'")';
+						 function distance(lat1, lon1, lat2, lon2) 
+						{
+						var R = 6371; // km
+						var dLat = toRad(lat2-lat1);
+						var dLon = toRad(lon2-lon1);
+						var lat1 = toRad(lat1);
+						var lat2 = toRad(lat2);
+
+						var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+						Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+						var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+						var d = R * c;
+						return parseFloat(d).toFixed(2);
+						}
+						function toRad(Value) {
+							return Value * Math.PI / 180;
+						}
+						var distanceFromMe= distance(myInfo.longitude, myInfo.latitude, userInfo.longitude, userInfo.latitude);
+						if(userInfo.holaRole === 'rideRequestor')
+						{
+							reqIcon='img/man.png'; 
+							tblView +='Waiting around you at <span style="font-size:15px; font-weight:bold;padding:5px">'+distanceFromMe+' KM</span> distance from you.';
+						}
+						else if(userInfo.holaRole === 'driver')
+						{
+							reqIcon='img/car.png'; 
+							tblView +='Driving around you at  <span style="font-size:15px; font-weight:bold;padding:5px">'+distanceFromMe+' KM</span> distance from you.';
+						}
+						else
+						{
+							reqIcon='img/man.png'; 
+							tblView +='Tracking around you at  <span style="font-size:15px; font-weight:bold;padding:5px">'+distanceFromMe+' KM</span> distance from you.';
+						}
+						tblView +='<nav><ul class="pager" style="text-align:left;"><li><a href="#" id='+userInfo.id+' onclick='+chatTriggerlistView+'   style="background-color:rgba(0,0,0,0.7); color:#fff" > <span class="glyphicon glyphicon-comment" style="vertical-align:middle;padding-right:5px;" aria-hidden="true"></span>Chat for Ride</a></li></ul></nav>';
+						tblView +='</div></div>	</a>';
+						descContent = holaUsrStatus;
+						var profilePic;
+						if(userInfo.id === 'driver@ram.com'){
+						profilePic='img/default_ram.png';
+						}
+						else {
+						profilePic='img/default_user.png';
+						}
+                        var marker = new google.maps.Marker({ map:map, animation:google.maps.Animation.DROP,icon:reqIcon });
+                        google.maps.event.addListener(marker, 'click', function() {
+						
+						google.maps.movedMapCenter=true;
+						
+						  var chatTrigger='openChatWindow("'+userInfo.id+'")';
+							
+							var contentStr= '<div class="row-fluid" style="width:280px; margin-left:0%; margin-right:0px"><div id="profileWindow" class="twPc-div"> <a class="twPc-bg twPc-block">Hola Ride</a>';
+							contentStr+='<div><a href="#" class="twPc-avatarLink">';
+						    contentStr+='<img alt="" src="'+profilePic+'" class="twPc-avatarImg">';
+							if(userName === userInfo.id)
+							{
+								contentStr+='</a><div class="twPc-divUser"><div class="twPc-divName"><a href="#">You</a></div>';
+								contentStr+='<span><a href="tel:+91'+ userInfo.holaUsrMobileNo+'" style="font-size:13px; color:#000;"><span style="font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif !important; font-size:13px; color:#000;">tel : +91'+ userInfo.holaUsrMobileNo+'</span></a></span>';
+								contentStr+='</div><div class="col-lg-12 col-sm-12 col-xs-12 col-md-12"><br>'+ userInfo.holaUsrStatus+'<nav style="display:none;"></nav></div></div></div>';
+							}
+							else
+							{
+							
+							contentStr+='</a><div class="twPc-divUser"><div class="twPc-divName infoBoxHolaUser"><a href="#">'+ userInfo.holaUsrName + '</a></div>';
+							contentStr+='<span><a href="tel:+91'+ userInfo.holaUsrMobileNo+'" style="font-size:13px; color:#000;"><span style="font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif !important; font-size:13px; color:#000;">tel : +91'+ userInfo.holaUsrMobileNo+'</span></a></span>';
+							contentStr+='</div><div class="col-lg-12 col-sm-12 col-xs-12 col-md-12 infoBoxHolaUser">'+ userInfo.holaUsrStatus+' <br> <br>at <span style="font-size:15px; font-weight:bold;padding:5px">'+distanceFromMe+' KM</span> from You<nav ><ul class="pager"><li><a href="#" id='+userInfo.id+' onclick='+chatTrigger+' style="background-color:rgba(0,0,0,0.7); color:#fff" > <span class="glyphicon glyphicon-comment" style="vertical-align:middle;padding-right:5px;" aria-hidden="true"></span>Chat for Ride</a></li><li><a class="findNextUsr" href="#" onclick="move_to_otheruser()" style="padding-top:5px; border:0px">Next <span class="glyphicon glyphicon glyphicon-chevron-right" style="padding-right:5px;" aria-hidden="true"></span></a></li></ul></nav></div></div></div>';
+							}
+							
+							
+							
+							contentStr+='</div>';
+  
+                            infowindow.setContent(contentStr)
+                            infowindow.open(map, marker);
+							
+                        });
+						
+						google.maps.event.addListener(infowindow, 'domready', function() {
+
+    // Reference to the DIV that wraps the bottom of infowindow
+    var iwOuter = $('.gm-style-iw');
+
+    /* Since this div is in a position prior to .gm-div style-iw.
+     * We use jQuery and create a iwBackground variable,
+     * and took advantage of the existing reference .gm-style-iw for the previous div with .prev().
+    */
+    var iwBackground = iwOuter.prev();
+
+    // Removes background shadow DIV
+    iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+
+    // Removes white background DIV
+    iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+
+    // Moves the infowindow 115px to the right.
+    
+
+    // Changes the desired tail shadow color.
+    iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
+
+    // Reference to the div that groups the close button elements.
+    var iwCloseBtn = iwOuter.next();
+	
+    // Apply the desired effect to the close button
+    iwCloseBtn.css({opacity: '1', right: '15px', top: '0px', border: '12px solid #48b5e9','font-size':'20px', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9'});
+
+    // If the content of infowindow not exceed the set maximum height, then the gradient is removed.
+   
+
+    // The API automatically applies 0.7 opacity to the button after the mouseout event. This function reverses this event to the desired value.
+    iwCloseBtn.mouseout(function(){
+      $(this).css({opacity: '1'});
+    });
+  });
+
+    			infowindow.setContent(marker.getTitle());
+						//infowindow.open(map, marker);
+						//infowindow.close(map);
+						var userName= localStorage.getItem('LoggedInUserID');
+					 if(userName === userInfo.id) {
+					// marker.setVisible(false);
+					 //infowindow.close(map);
+					 }
+					 else{ marker.setVisible(true); }
+                        userInfo.marker = marker;
+						
+					//	tblView +='</a>';
+					if(localStorage.getItem('LoggedInUserID') !== userInfo.id)
+					{
+					$('#HolalistView').html(tblView);
+					}
+				
+                    }
+                    //Move the markers
+                    userInfo.marker.setTitle(userInfo.id);
+                    userInfo.marker.setPosition( 
+                        new google.maps.LatLng(userInfo.latitude, userInfo.longitude));
+                }
+                
+                $('#user-number').text(Math.max(Object.keys(users).length-1,0) +'');
+				if(Math.max(Object.keys(users).length-1,0) < 2){
+						$('.findNextUsr').hide();
+				}
+				else
+				{
+						$('.findNextUsr').show();
+				}
+                // Refresh the markers every 20 seconds
+                clearTimeout(refreshTimeout) 
+                refreshTimeout = setTimeout(refreshMarkers, 1000*20);
+            }
+			function openChatWindow(userId)
+			{
+			
+					chatAudience=userId;
+					     $("#sidebar-wrapper").toggleClass("active");
+		$("#sidebar-wrapper").css('width','100%');
+		 $("#sidebar-wrapper").css('right','100%');
+		 $("#sidebar-wrapper").css('margin-right','-100%');
+		
+		$("#chatMenuList").show();
+		$("#menuList").hide();
+					
+			}
+            function mapInitialize() {
+			
+			if(navigator.geolocation)
+			{
+				 navigator.geolocation.getCurrentPosition(success);
+				 $('#btnStreetView').trigger( "click" );
+			}
+			else{ error('Geo Location NOT supported');}
+                
+            }
+			function success(position)
+			{
+			  var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+			  var options= {
+					zoom:15,
+					center:coords,
+					mapTypeControl: false,
+					navigationControlOptions :{
+					 style : google.maps.NavigationControlStyle.SMALL
+					},
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+					
+			  };
+			  map = new google.maps.Map(document.getElementById("map-canvas"),options);
+			  
+			  var customViewControlDiv= document.createElement('div');
+			  var zoomcontrol = new ZoomControl(customViewControlDiv, map);
+			  customViewControlDiv.index=1;
+			  map.controls[google.maps.ControlPosition.TOP_CENTER].push(customViewControlDiv);
+			  var marker = new google.maps.Marker({ map:map, position:coords, animation:google.maps.Animation.DROP,icon:'img/car.png' });
+			   
+			   marker.setVisible(false);
+                infowindow = new google.maps.InfoWindow({ content: marker.getTitle() });
+                google.maps.event.addListener(map, 'click', function() {
+                    infowindow.close(map);
+                });
+				
+				function ZoomControl(controlDiv, map){
+			
+			//controlDiv.style.padding-left="5px";
+			var controlWrapper = document.createElement('div');
+			controlWrapper.classList.add('btn-group');
+			controlWrapper.classList.add('btngroup-padding');
+			controlDiv.appendChild(controlWrapper);
+			
+			var streetViewBtn = document.createElement('INPUT');
+			streetViewBtn.setAttribute('type','button');
+			//streetViewBtn.classList.add('btn');
+			streetViewBtn.classList.add('btnViewsSelectedSmall');
+			streetViewBtn.value='Street';
+			streetViewBtn.id='btnStreetView';
+			streetViewBtn.onclick = function () {
+				$('#btnStreetView').addClass('btnViewsSelectedSmall');
+				$('#btnStreetView').removeClass('btnViewsSmall');
+				$('#btnAreaView').addClass('btnViewsSmall');
+				$('#btnAreaView').removeClass('btnViewsSelectedSmall');
+				$('#btnCityView').addClass('btnViewsSmall');
+				$('#btnCityView').removeClass('btnViewsSelectedSmall');
+			};
+			controlWrapper.appendChild(streetViewBtn);
+			
+			var areaViewBtn = document.createElement('INPUT');
+			areaViewBtn.setAttribute('type','button');
+			//areaViewBtn.classList.add('btn');
+			areaViewBtn.classList.add('btnViewsSmall');
+			areaViewBtn.value='Area';
+			areaViewBtn.id='btnAreaView';
+			areaViewBtn.onclick = function () {
+				$('#btnAreaView').addClass('btnViewsSelectedSmall');
+				$('#btnAreaView').removeClass('btnViewsSmall');
+				$('#btnStreetView').addClass('btnViewsSmall');
+				$('#btnStreetView').removeClass('btnViewsSelectedSmall');
+				$('#btnCityView').addClass('btnViewsSmall');
+				$('#btnCityView').removeClass('btnViewsSelectedSmall');
+			};
+			controlWrapper.appendChild(areaViewBtn);
+			
+			var cityViewBtn = document.createElement('INPUT');
+			cityViewBtn.setAttribute('type','button');
+			//cityViewBtn.classList.add('btn');
+			cityViewBtn.classList.add('btnViewsSmall');
+			cityViewBtn.value='City';
+			cityViewBtn.id='btnCityView';
+			cityViewBtn.onclick = function () {
+				$('#btnCityView').addClass('btnViewsSelectedSmall');
+				$('#btnCityView').removeClass('btnViewsSmall');
+				$('#btnStreetView').addClass('btnViewsSmall');
+				$('#btnStreetView').removeClass('btnViewsSelectedSmall');
+				$('#btnAreaView').addClass('btnViewsSmall');
+				$('#btnAreaView').removeClass('btnViewsSelectedSmall');
+			};
+			controlWrapper.appendChild(cityViewBtn);
+			
+			
+			google.maps.event.addDomListener(streetViewBtn, 'click', function(){
+				getCurrentGeo();
+				map.setZoom(15);
+				
+			});
+			google.maps.event.addDomListener(areaViewBtn, 'click', function(){
+				getCurrentGeo();
+				map.setZoom(13);
+				
+			});
+			google.maps.event.addDomListener(cityViewBtn, 'click', function(){
+			
+				getCurrentGeo();
+				map.setZoom(10);
+				
+			});
+			 function getCurrentGeo()
+			 {
+			 navigator.geolocation.getCurrentPosition( function(position){
+			 
+				var currPos= new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+				map.setCenter(currPos);
+				
+			 });
+			   
+			 }
+			
+			}
+			
+                refreshMarkers();
+			  
+			  
+			}
+			
+			
+            function move_to_otheruser(){
+                var ids = Object.keys(users)
+                ids.slice(ids.indexOf(currentUserInfo.id),1);
+                var random_user_id = ids[Math.floor(ids.length * Math.random())]
+                var userInfo = users[random_user_id];
+                map.setCenter(new google.maps.LatLng(
+                        userInfo.latitude, userInfo.longitude));
+               // infowindow.setContent(userInfo.name)
+			   var marker = new google.maps.Marker({ map:map, animation:google.maps.Animation.DROP,icon:reqIcon });
+                        google.maps.event.addListener(marker, 'click', function() {
+						
+						google.maps.movedMapCenter=true;
+						
+						var profilePic1;
+						if(userInfo.id === 'driver@ram.com'){
+						profilePic1='img/default_ram.png';
+						}
+						else {
+						profilePic1='img/default_user.png';
+						}
+						  var chatTrigger='openChatWindow("'+userInfo.id+'")';
+							
+							var contentStr= '<div class="row-fluid" style="width:280px; margin-left:0%; margin-right:0px"><div id="profileWindow" class="twPc-div"> <a class="twPc-bg twPc-block">Hola Ride</a>';
+							contentStr+='<div><a href="#" class="twPc-avatarLink">';
+						    contentStr+='<img alt="" src="'+profilePic1+'" class="twPc-avatarImg">';
+							if(userName === userInfo.id)
+							{
+								contentStr+='</a><div class="twPc-divUser"><div class="twPc-divName"><a href="#">You</a></div>';
+								contentStr+='<span><a href="tel:+91'+ userInfo.holaUsrMobileNo+'" style="font-size:13px; color:#000;"><span style="font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif !important; font-size:13px; color:#000;">tel : +91'+ userInfo.holaUsrMobileNo+'</span></a></span>';
+								contentStr+='</div><div class="col-lg-12 col-sm-12 col-xs-12 col-md-12"><br>'+ userInfo.holaUsrStatus+'<nav style="display:none;"></nav></div></div></div>';
+							}
+							else
+							{
+							
+							contentStr+='</a><div class="twPc-divUser"><div class="twPc-divName infoBoxHolaUser"><a href="#">'+ userInfo.holaUsrName + '</a></div>';
+							contentStr+='<span><a href="tel:+91'+ userInfo.holaUsrMobileNo+'" style="font-size:13px; color:#000;"><span style="font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif !important; font-size:13px; color:#000;">tel : +91'+ userInfo.holaUsrMobileNo+'</span></a></span>';
+							contentStr+='</div><div class="col-lg-12 col-sm-12 col-xs-12 col-md-12 infoBoxHolaUser">'+ userInfo.holaUsrStatus+'<br><br>at <span style="font-size:15px; font-weight:bold;padding:5px">'+distanceFromMe+' KM</span> from You<nav ><ul class="pager"><li><a href="#" id='+userInfo.id+' onclick='+chatTrigger+' style="background-color:rgba(0,0,0,0.7); color:#fff" > <span class="glyphicon glyphicon-comment" style="vertical-align:middle;padding-right:5px;" aria-hidden="true"></span>Chat for Ride</a></li><li><a class="findNextUsr" href="#" onclick="move_to_otheruser()" >Next <span class="glyphicon glyphicon glyphicon-chevron-right" style="padding-right:5px;" aria-hidden="true"></span></a></li></ul></nav></div></div></div>';
+							}
+							
+							
+							
+							contentStr+='</div>';
+  
+                            infowindow.setContent(contentStr);
+							
+                            infowindow.open(map, marker);
+							var usrCount=$('#user-number').html();
+							
+							
+                        });
+						
+                infowindow.open(map, userInfo.marker);
+            }
+            google.maps.event.addDomListener(window, 'load', mapInitialize);
+            currentUserInfo = initLocationSharing(userLocationUpdate);
+           
+    	</script>
+	<script>
+	$('#btn-mapView').addClass('btnViewsSelected');
+    $('#btn-listView').addClass('btnViews');
+	$(document).ready(function(){
+	
+	
+
+	$('#btn-mapView').click(function(e){
+		
+		$('#HolalistView').hide();
+		$('#map-canvas').show();		
+		$('#btn-mapView').addClass('btnViewsSelected');
+		$('#btn-mapView').removeClass('btnViews');
+		$('#btn-listView').removeClass('btnViewsSelected');
+		$('#btn-listView').addClass('btnViews');
+		e.preventDefault();
+	});
+	$('#btn-listView').click(function(e){
+		
+		$('#HolalistView').show();
+		$('#map-canvas').hide();
+		$('#btn-listView').addClass('btnViewsSelected');
+		$('#btn-listView').removeClass('btnViews');
+		$('#btn-mapView').removeClass('btnViewsSelected');
+		$('#btn-mapView').addClass('btnViews');
+		e.preventDefault();
+		//$('#btn-mapView').css('background-color', 'rgba(0,0,0,1.9)');
+	});
+	loadChat();
+	
+	
+	});
+	  
+	  var grpName1=getParameterByName('GroupName');
+		if(grpName1.length > 16)
+		{
+		$(".welcomeHeader").html(getParameterByName('GroupName').substring(0, 16)+'..');
+		}
+		else
+		{
+		$(".welcomeHeader").html(getParameterByName('GroupName').substring(0, 16));
+		}
+	//$(".welcomeHeader").html(getParameterByName('GroupName').substring(0, 20));
+			
+    // Closes the sidebar menu
+    $("#menu-close").click(function(e) {
+        
+        $("#sidebar-wrapper").toggleClass("active");
+		$("#sidebar-wrapper").css('width','0px');
+		$("#sidebar-wrapper").css('right','0px');
+		$("#sidebar-wrapper").css('margin-right','-0px');
+    });
+$("#chat-menu-close").click(function(e) {
+       $(".chat-messages").css('height','420px');
+        $("#sidebar-wrapper").toggleClass("active");
+		$("#sidebar-wrapper").css('width','0px');
+		$("#sidebar-wrapper").css('right','0px');
+		$("#sidebar-wrapper").css('margin-right','-0px');
+		e.preventDefault();
+    });
+    // Opens the sidebar menu
+    $("#leftMenu").click(function(e) {
+      
+		$(".chat-messages").css('height','420px');
+        $("#sidebar-wrapper").toggleClass("active");
+		$("#sidebar-wrapper").css('width','250px');
+		$("#sidebar-wrapper").css('right','250px');
+		$("#sidebar-wrapper").css('margin-right','-250px');
+		$("#chatMenuList").hide();
+		$("#menuList").show();
+		e.preventDefault();
+    });
+	$(".chatMenu").click(function(e) {
+        $(".chat-messages").css('height','420px');
+		var grpName=getParameterByName('GroupName');
+		if(grpName.length > 25)
+		{
+		$(".welcomeHeaderChat").html(getParameterByName('GroupName').substring(0, 25)+'..');
+		}
+		else
+		{
+		$(".welcomeHeaderChat").html(getParameterByName('GroupName').substring(0, 25));
+		}
+		
+        $("#sidebar-wrapper").toggleClass("active");
+		$("#sidebar-wrapper").css('width','100%');
+		 $("#sidebar-wrapper").css('right','100%');
+		 $("#sidebar-wrapper").css('margin-right','-100%');
+		
+		$("#chatMenuList").show();
+		$("#menuList").hide();
+		e.preventDefault();
+    });
+    // Scrolls to the selected menu item on the page
+   
+	$("#menuLogOut").click(function(){
+	
+		localStorage.removeItem("LoggedInUserID");
+		localStorage.removeItem("LoggedInUserName");
+		localStorage.removeItem("LoggedInUserMobNo");
+		localStorage.removeItem("LoggedInUserStatus");
+		window.location.href="index.html";
+		e.preventDefault();
+	});
+	
+	$("#chatBox").focus(function(){
+       // $(".chat-messages").css('height','120px');
+    });
+	
+	$(window).resize(function(){
+	  var chatWidth= $(".chat-messages").height();
+	  if(parseInt(chatWidth) > 200)
+	  {
+	  $(".chat-messages").css('height','120px');
+	  
+	  }
+	  else
+	  {
+	  $(".chat-messages").css('height','420px');
+	  }
+	});
+	
+	$("#profileNav").click(function(){
+		window.location.href="profile.html?userName="+getParameterByName('userName')+"&GroupId="+getParameterByName('GroupId')+"&GroupName="+getParameterByName('GroupName')+"";
+	});
+    </script>
+	<script src="js/jquery.mobile.custom.min.js"></script>  
+	<script>
+$(function(){
+  // Bind the swipeHandler callback function to the swipe event on div.box
+  $( "#sidebar-wrapper" ).on( "swipe", swipeHandler );
+ 
+  // Callback function references the event target and adds the 'swipe' class to it
+  function swipeHandler( event ){
+    $("#menu-close").trigger('click');
+  }
+});
+</script>
+ 
+</body>
+
+</html>
