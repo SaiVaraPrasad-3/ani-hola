@@ -1,0 +1,26 @@
+{
+    "cordova-plugin-request-location-accuracy": {
+        "source": {
+            "type": "local",
+            "path": "D:\\cordova-plugin-request-location-accuracy"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-whitelist": {
+        "source": {
+            "type": "local",
+            "path": "D:\\cordova-plugin-whitelist"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova.plugins.diagnostic": {
+        "source": {
+            "type": "local",
+            "path": "D:\\cordova-diagnostic-plugin-master\\cordova-diagnostic-plugin-master"
+        },
+        "is_top_level": true,
+        "variables": {}
+    }
+}

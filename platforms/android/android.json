@@ -1,0 +1,74 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "AndroidManifest.xml": {
+                "parents": {
+                    "/*": []
+                }
+            },
+            "res/xml/config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"RequestLocationAccuracy\"><param name=\"android-package\" value=\"cordova.plugin.RequestLocationAccuracy\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Diagnostic\"><param name=\"android-package\" value=\"cordova.plugins.Diagnostic\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "cordova-plugin-request-location-accuracy": {
+            "PACKAGE_NAME": "com.evothings.HolaRide"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.evothings.HolaRide"
+        },
+        "cordova.plugins.diagnostic": {
+            "PACKAGE_NAME": "com.evothings.HolaRide"
+        }
+    },
+    "dependent_plugins": {},
+    "modules": [
+        {
+            "file": "plugins/cordova-plugin-request-location-accuracy/www/RequestLocationAccuracy.js",
+            "id": "cordova-plugin-request-location-accuracy.RequestLocationAccuracy",
+            "pluginId": "cordova-plugin-request-location-accuracy",
+            "clobbers": [
+                "cordova.plugins.locationAccuracy"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-whitelist/whitelist.js",
+            "id": "cordova-plugin-whitelist.whitelist",
+            "pluginId": "cordova-plugin-whitelist",
+            "runs": true
+        },
+        {
+            "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.js",
+            "id": "cordova.plugins.diagnostic.Diagnostic",
+            "pluginId": "cordova.plugins.diagnostic",
+            "clobbers": [
+                "cordova.plugins.diagnostic"
+            ]
+        }
+    ],
+    "plugin_metadata": {
+        "cordova-plugin-request-location-accuracy": "1.0.1",
+        "cordova-plugin-whitelist": "1.2.1",
+        "cordova.plugins.diagnostic": "2.3.10"
+    }
+}

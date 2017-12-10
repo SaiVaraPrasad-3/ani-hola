@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+	<meta http-equiv="Content-Security-Policy"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SignUp - Hola Ride</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/Hola.Master.Styles.css" rel="stylesheet">
+	 <!-- <link href="css/bootstrap-select.min.css" rel="stylesheet"> -->
+    <!-- Custom Fonts -->
+   <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+
+		<style>
+	
+	.offPage{ position:absolute; bottom:100%; right:100%}
+.frmSearch {padding:0px; margin:0px 15px 0px 15px;}
+#holagroup-list{float:left;list-style:none;margin:0;padding:0;width:100%; height:130px; overflow:scroll;}
+#holagroup-list li{padding: 10px; background:#FAFAFA;border-bottom:#F0F0F0 1px solid; text-align:left;}
+#holagroup-list li:hover{background:#F0F0F0;text-align:left;}
+#suggestion-box{margin:0px 15px 0px 15px;}
+#search-box{width:100%; padding-top:10px; padding-bottom:10px;border: #F0F0F0 1px solid; padding-left:10px; font-weight:bold;}
+	</style>
+    
+</head>
+
+<body>
+<div id="menu-toggle" class="btn btn-dark btn-lg toggle" style="width:100%; margin:0;">
+	
+	<a href="index.html" style="color:#fff"><div class="col-lg-2 col-md-3 col-sm-2 col-xs-2 chatMenu"   style="padding-right:0px;"><i class="glyphicon glyphicon-menu-left"></i><span style="vertical-align: top;font-size: 15px; color:#fff">Back</span></div></a>
+	
+	</div>
+
+    <!-- Header -->
+    <header id="top" class="header">
+        <div class="text-vertical-center">
+		
+            <div id="signUpForm">
+			<h3 style="color:#fff;">SignUp to <h1 class="logoHeader">Hola</h1></h3>
+			<div class="col-lg-12"><br></div>
+			
+			<div class="row" style="margin:0; padding:0">
+			<div class="col-lg-3 col-centered">
+			<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1">@</span>
+			<input type="search" class="form-control" id="user_email" placeholder="Your Email" aria-describedby="basic-addon1">
+			</div>
+			</div>
+			<div class="col-lg-12"><br></div>
+			<div class="col-lg-3 col-centered">
+			<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1"></span>
+			<input type="text" class="form-control" id="user_name" placeholder="Your Name" aria-describedby="basic-addon1">
+			</div>
+			</div>
+			
+			<div class="col-lg-12"><br></div>
+			<div class="col-lg-3 col-centered">
+			<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1"></span>
+			<input type="password" class="form-control" id="password_first" placeholder="Password" aria-describedby="basic-addon1">
+			</div>
+			</div>
+			
+			
+			<div class="col-lg-12"><br></div>
+			<div class="col-lg-3 col-centered">
+			<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1"></span>
+			<input type="password" class="form-control" id="password_confirm" placeholder="re-type Password" aria-describedby="basic-addon1">
+			</div>
+			</div>
+			
+			<div class="col-lg-12"><br></div>
+			<div class="col-lg-3 col-centered">
+			<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1"></span>
+			<input type="text" class="form-control" id="mobile_No" placeholder="Mobile Number" aria-describedby="basic-addon1">
+			</div>
+			</div>
+			
+			</div>
+			<input type="hidden" id="user_personal_status" value="Hey there! I am using HolaRide" />
+			
+			<div class="col-lg-12"><br></div>
+			<input id="submit_button" type="button" class="btnSignup" value="SignUp" />
+			
+			</div>
+			<div id="groupSelection" style="display:none;">
+			<h2 style="color:#fff;">Choose Your <br><span class="logoHeader">HOLA</span> Group </h2>
+			
+			<div class="frmSearch">
+				<input type="text" id="search-box" placeholder="Search Hola Group" />
+				
+			</div>
+			<div id="suggestion-box" ></div>
+			
+			
+			
+			
+			
+			<nav style="padding-top:10px" id="holaDriveOptions">
+			<ul class="pager">
+			<li id="driveNow"><a href="#" class="customBlackButtons"> I Ride Now  <span class="glyphicon glyphicon-send" aria-hidden="true"></span> </a></li>
+			<li id="NeedPool"><a href="#"  class="customBlackButtons"> Find Me a Ride  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> </a></li>
+			
+			</ul>
+			<ul class="pager">
+			
+			<li id="trackRide"><a href="#"  class="customBlackButtons">I Track Ride  <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a></li>
+			</ul>
+			</nav>
+			<p><br></p><p><br></p>
+			<button type="button" id="createGrp" clas="btn btn-default btn-xs">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Your Own HOLA Group
+			</button>
+			</div>
+			<div id="newgroupForm">
+			<div class="col-lg-3 col-centered">
+			<h2 style="color:#fff;">Create Your Own <br><span class="logoHeader">HOLA</span> Group </h2>
+			<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1"></span>
+			<input type="text" class="form-control" id="group_name" placeholder="Group Name" aria-describedby="basic-addon1">
+			</div>
+			</div>
+			
+			<div class="col-lg-12"><br></div>
+			<div class="col-lg-3 col-centered">
+			<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1"></span>
+			<textarea  class="form-control" id="group_note" placeholder="Group Status  / Note" aria-describedby="basic-addon1"></textarea>
+			</div>
+			</div>
+			<div class="col-lg-12"><br></div>
+			<input id="newgroup_button" type="button" value="Create" />
+			<br><br>
+			<small style="color:#fff"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> <b>Sample group names : </b>John Wedding party at Taj, KPN Travels Chennai to Bangalore, St.Joseph School vehicle route 1 , Infosys cab route Madiwala, Mumbai Express, etc.. </small>
+			</div>
+			
+        </div>
+    </header>
+
+
+   
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile.custom.min.js"></script>  
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+	
+    <script type="text/javascript" src="socket.io.js"></script>
+	<script src="js/Hola/signup.js"></script>
+	<!--<script src="js/bootstrap-select.js"></script>-->
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/location-Enable.js"></script>
+	<script>
+	$(document).ready(function(){
+	$("#driveNow").click(function()
+	{
+	
+	var userName= $("#user_email").val();
+	var groupId=$("#search-box").val();
+	var groupName=$('#search-box').val();
+	if(!groupId)
+	{
+	  alert('Choose your Hola driving group');
+	  return false;
+	}
+	if(userName ==='')
+	{
+		userName = getParameterByName('userName');
+	
+	}
+	localStorage.setItem("HolaRole", 'driver');
+	window.location.href="home.html?userName="+userName+"|driveNow&GroupId="+groupId+"&GroupName="+groupName+"";
+	
+	});
+	
+	$("#NeedPool").click(function()
+	{
+	var userName= $("#user_email").val();
+	var groupId=$("#search-box").val();
+	var groupName=$('#search-box').val();
+	if(!groupId)
+	{
+	  alert('Choose your Hola driving group');
+	  return false;
+	}
+	if(userName ==='')
+	{
+		userName = getParameterByName('userName');
+	
+	}
+	localStorage.setItem("HolaRole", 'rideRequestor');
+	window.location.href="home.html?userName="+userName+"|needpool&GroupId="+groupId+"&GroupName="+groupName+"";
+	
+	});
+	$("#trackRide").click(function()
+	{
+	var userName= $("#user_email").val();
+	var groupId=$('#search-box').val();
+	var groupName=$('#search-box').val();
+	if(!groupId)
+	{
+	  alert('Choose your Hola driving group');
+	  return false;
+	}
+	if(userName ==='')
+	{
+		userName = getParameterByName('userName');
+	
+	}
+	localStorage.setItem("HolaRole", 'rideTracker');
+	window.location.href="home.html?userName="+userName+"|needpool&GroupId="+groupId+"&GroupName="+groupName+"";
+	
+	});
+	$("#createGrp").click(function()
+	{
+			$("#signUpForm").hide();
+			$("#groupSelection").hide();
+			$("#newgroupForm").show();
+	
+	});
+	//$( "#ddlGroup" ).keydown(function() {
+		// $('#ddlGroup').attr('type', 'text');
+	//});
+	//$( "#ddlGroup" ).keyup(function() {
+		// $('#ddlGroup').attr('type', 'text');
+	//});
+	function getParameterByName( name ){
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( location.search );
+  return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+	
+	
+	});
+	
+	
+</script>
+</body>
+
+</html>

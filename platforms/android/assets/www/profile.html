@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+	<meta http-equiv="Content-Security-Policy"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Profile - Hola Ride</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/Hola.Master.Styles.css" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+<div id="menu-toggle" class="btn btn-dark btn-lg toggle" style="width:100%; margin:0;">
+	
+	<a href="#" id="profileNav" style="color:#fff"><div class="col-lg-2 col-md-3 col-sm-2 col-xs-2 chatMenu"   style="padding-right:0px;"><i class="glyphicon glyphicon-menu-left"></i><span style="vertical-align: top;font-size: 15px; color:#fff">Back</span></div></a>
+	
+	</div>
+
+    <!-- Header -->
+    <header id="top" class="header">
+        <div class="text-vertical-center">
+		
+            <div id="signUpForm">
+			<h3 style="color:#fff;"><h1 class="logoHeader">Hola</h1><h2 class="logoSubHeader" style="margin:0px; color:#000;">Profile</h2></h3>
+			<div class="col-lg-12"><br></div>
+			
+			<div class="row" style="margin:0; padding:0">
+			
+			<div class="col-lg-12" style="color:#fff; text-align:left"><span>Name</span><br></div>
+			<div class="col-lg-3 col-centered">
+			<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1"></span>
+			<input type="text" class="form-control" id="user_name" placeholder="User Name" aria-describedby="basic-addon1">
+			</div>
+			</div>
+			
+			<div class="col-lg-12" style="color:#fff; text-align:left"><span>Mobile Number</span><br></div>
+			<div class="col-lg-3 col-centered">
+			<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1"></span>
+			<input type="text" class="form-control" id="mobile_No" placeholder="Mobile No" aria-describedby="basic-addon1">
+			</div>
+			</div>
+			
+			
+			<div class="col-lg-12" style="color:#fff; text-align:left"><span>Personal Status</span><br></div>
+			<div class="col-lg-3 col-centered">
+			<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1"></span>
+			<input type="text" class="form-control" id="user_personal_status" placeholder="Personal Status" aria-describedby="basic-addon1">
+			</div>
+			</div>
+			<div class="col-lg-12" style="color:#fff; text-align:left"><span>Password</span><br></div>
+			<div class="col-lg-3 col-centered">
+			<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1"></span>
+			<input type="password" class="form-control" id="password_first" placeholder="Password" aria-describedby="basic-addon1">
+			</div>
+			</div>
+			
+			</div>
+			<input type="hidden" id="user_personal_status" value="Hey there! I am using HolaRide" />
+			
+			<div class="col-lg-12"><br></div>
+			<input id="btnUpdate" type="button" value="Update" />
+			
+			</div>
+			
+		
+			
+        </div>
+    </header>
+
+
+   
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>	
+    <script type="text/javascript" src="socket.io.js"></script>
+	<script type="text/javascript" src="js/Hola/profile.js"></script>
+	<script>
+	$(document).ready(function(){
+		function getParameterByName( name ){
+		name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+		var regexS = "[\\?&]"+name+"=([^&#]*)";
+		var regex = new RegExp( regexS );
+		var results = regex.exec( location.search );
+		return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+	
+	$("#profileNav").click(function(){
+		window.location.href="home.html?userName="+getParameterByName('userName')+"&GroupId="+getParameterByName('GroupId')+"&GroupName="+getParameterByName('GroupName')+"";
+	});
+	});
+	</script>
+</body>
+
+</html>

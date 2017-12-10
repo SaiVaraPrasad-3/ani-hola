@@ -1,0 +1,40 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "AndroidManifest.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_LOCATION_EXTRA_COMMANDS\" />",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "cordova-plugin-request-location-accuracy": {
+            "PACKAGE_NAME": "com.evothings.HolaRide"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.evothings.HolaRide"
+        },
+        "cordova.plugins.diagnostic": {
+            "PACKAGE_NAME": "com.evothings.HolaRide"
+        }
+    },
+    "dependent_plugins": {}
+}

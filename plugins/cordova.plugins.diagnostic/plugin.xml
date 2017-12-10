@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova.plugins.diagnostic"
+    version="2.3.10">
+
+    <name>Diagnostic</name>
+    <description>Cordova/Phonegap plugin to check the state of Location/WiFi/Camera/Bluetooth device settings.</description>
+    <author>Dave Alden</author>
+    <license>MIT</license>
+    <keywords>ecosystem:cordova,cordova,phonegap,android,ios,windows,diagnostic,wifi,location,gps,camera,bluetooth,settings</keywords>
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+    <repo>https://github.com/dpa99c/cordova-diagnostic-plugin.git</repo>
+    <issue>https://github.com/dpa99c/cordova-diagnostic-plugin/issues</issue>
+
+   
+	<!-- android -->
+	<platform name="android">
+		<config-file target="res/xml/config.xml" parent="/*">
+			<feature name="Diagnostic" >
+				<param name="android-package" value="cordova.plugins.Diagnostic"/>
+			</feature>
+		</config-file>
+
+        <framework src="com.android.support:support-v4:+" />
+        <framework src="com.android.support:appcompat-v7:+" />
+
+        <js-module src="www/android/diagnostic.js" name="Diagnostic">
+            <clobbers target="cordova.plugins.diagnostic" />
+        </js-module>
+        <source-file src="src/android/Diagnostic.java" target-dir="src/org/apache/cordova/Diagnostic" />
+    </platform>
+
+</plugin>

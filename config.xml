@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.evothings.HolaRide" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>HolaRide</name>
+    <description>
+        Fast & Safe way to to share your location using GPS tracking with friends,colleagues & family !
+    </description>
+    <author email="riche.janani@gmail.com" href="http://cordova.io">
+        HolaRide Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+	<allow-navigation href="http://*/*" />
+</widget>
